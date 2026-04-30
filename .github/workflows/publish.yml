@@ -85,9 +85,6 @@ jobs:
           # helm is already installed
           helm version
 
-      - name: Generate values.schema.json from values.schema.yaml
-        run: ./tools/generate-json-schema.py
-
         # chartpress will make a commit when pushing to gh-pages, so we need to
         # configure a git user.
       - name: Configure a git user
