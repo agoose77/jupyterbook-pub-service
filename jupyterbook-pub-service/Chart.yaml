@@ -1,6 +1,6 @@
 apiVersion: v2
 name: jupyterbook-pub-service
-description: A Helm chart for jupyterbook.pub
+description: A Helm chart for running jupyterbook.pub
 
 # A chart can be either an 'application' or a 'library' chart.
 #

@@ -101,7 +101,7 @@ jobs:
         run: ./ci/publish
         env:
           GITHUB_REPOSITORY: "${{ github.repository }}"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Package chart for actions/upload-artifact
         if: steps.publishing.outputs.publishing == ''
