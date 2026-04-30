@@ -16,7 +16,7 @@ ENV PATH=/root/.local/bin:${PATH}
 # ephemeral docker cache (--mount=type=cache,target=${PIP_CACHE_DIR}). We use
 # the same technique for the directory /tmp/wheels.
 #
-ARG JUPYTER_BOOK_REV=97a0364739602f3e243e7377c06b543372c46fd8
+ARG JUPYTER_BOOK_REV=6d1a9c1d210877127d76bcea3997bbd80b6832e2
 RUN --mount=type=cache,target=/tmp/transient \
     cd $(mktemp -d) && \
     git clone --depth=1 https://github.com/yuvipanda/jupyterbook.pub . && \
@@ -39,7 +39,7 @@ RUN mkdir -p /opt/templates && \
     npm ci --ignore-scripts
 ENV JUPYTERBOOK2BUILDER__JupyterBookSiteRenderer__templates_path=/opt/templates
 ENV PYTHONUNBUFFERED=1
-# Overriden for dokku
+
 ENTRYPOINT ["tini", "--"]
 CMD ["python3", "-m", "jupyterbook_pub.app"]
 
