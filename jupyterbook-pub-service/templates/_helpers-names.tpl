@@ -17,7 +17,7 @@
     Renders to a prefix for the chart's resource names. This prefix is assumed to
     make the resource name cluster unique.
 */}}
-{{- define "jupyterbook-pub.fullname" -}}
+{{- define "jupyterbook-pub-service.fullname" -}}
     {{- /*
         We have implemented a trick to allow a parent chart depending on this
         chart to call these named templates.
@@ -34,10 +34,10 @@
     */}}
     {{- $fullname_override := .Values.fullnameOverride }}
     {{- $name_override := .Values.nameOverride }}
-    {{- if ne .Chart.Name "jupyterbookpub" }}
-        {{- if .Values.jupyterbookpub }}
-            {{- $fullname_override = .Values.jupyterbookpub.fullnameOverride }}
-            {{- $name_override = .Values.jupyterbookpub.nameOverride }}
+    {{- if ne .Chart.Name "jupyterbook-pub-service" }}
+        {{- if .Values.jupyterbook-pub-service }}
+            {{- $fullname_override = .Values.jupyterbook-pub-service.fullnameOverride }}
+            {{- $name_override = .Values.jupyterbook-pub-service.nameOverride }}
         {{- end }}
     {{- end }}
 
@@ -57,9 +57,9 @@
     Renders to a blank string or if the fullname template is truthy renders to it
     with an appended dash.
 */}}
-{{- define "jupyterbook-pub.fullname.dash" -}}
-    {{- if (include "jupyterbook-pub.fullname" .) }}
-        {{- include "jupyterbook-pub.fullname" . }}-
+{{- define "jupyterbook-pub-service.fullname.dash" -}}
+    {{- if (include "jupyterbook-pub-service.fullname" .) }}
+        {{- include "jupyterbook-pub-service.fullname" . }}-
     {{- end }}
 {{- end }}
 
@@ -70,14 +70,14 @@
 */}}
 
 {{- /* binderhub resources' default name */}}
-{{- define "jupyterbook-pub.app.fullname" -}}
-    {{- include "jupyterbook-pub.fullname.dash" . }}jupyterbook-pub
+{{- define "jupyterbook-pub-service.app.fullname" -}}
+    {{- include "jupyterbook-pub-service.fullname.dash" . }}jupyterbook-pub-service
 {{- end }}
 
 {{- /* App's Ingress name */}}
-{{- define "jupyterbook-pub.app.ingress.fullname" -}}
-    {{- if (include "jupyterbook-pub.fullname" .) }}
-        {{- include "jupyterbook-pub.fullname" . }}
+{{- define "jupyterbook-pub-service.app.ingress.fullname" -}}
+    {{- if (include "jupyterbook-pub-service.fullname" .) }}
+        {{- include "jupyterbook-pub-service.fullname" . }}
     {{- else -}}
         binderhub
     {{- end }}

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "jupyterbook-pub.app.fullname" . }}
+  name: {{ include "jupyterbook-pub-service.app.fullname" . }}
   labels:
-    {{- include "jupyterbook-pub.labels" . | nindent 4 }}
+    {{- include "jupyterbook-pub-service.labels" . | nindent 4 }}
     {{- with .Values.service.annotations }}
   annotations:
     {{- . | toYaml | nindent 4 }}
@@ -15,4 +15,4 @@ spec:
       targetPort: http
       name: http
   selector:
-    {{- include "jupyterbook-pub.selectorLabels" . | nindent 4 }}
+    {{- include "jupyterbook-pub-service.selectorLabels" . | nindent 4 }}
