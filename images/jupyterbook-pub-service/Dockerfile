@@ -37,9 +37,8 @@ RUN mkdir -p /opt/templates && \
     mv book-theme* site/myst/book-theme && \
     cd site/myst/book-theme && \
     npm ci --ignore-scripts
-ENV JUPYTERBOOK2BUILDER__templates_path=/opt/templates
-
-
+ENV JUPYTERBOOK2BUILDER__JupyterBookSiteRenderer__templates_path=/opt/templates
+ENV PYTHONUNBUFFERED=1
 # Overriden for dokku
 ENTRYPOINT ["tini", "--"]
 CMD ["python3", "-m", "jupyterbook_pub.app"]
