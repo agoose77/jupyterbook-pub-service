@@ -35,9 +35,9 @@
     {{- $fullname_override := .Values.fullnameOverride }}
     {{- $name_override := .Values.nameOverride }}
     {{- if ne .Chart.Name "jupyterbook-pub-service" }}
-        {{- if .Values.jupyterbook-pub-service }}
-            {{- $fullname_override = .Values.jupyterbook-pub-service.fullnameOverride }}
-            {{- $name_override = .Values.jupyterbook-pub-service.nameOverride }}
+        {{- if .Values.jupyterhub }}
+            {{- $fullname_override = .Values.jupyterhub.fullnameOverride }}
+            {{- $name_override = .Values.jupyterhub.nameOverride }}
         {{- end }}
     {{- end }}
 
