@@ -9,15 +9,15 @@
 # https://github.com/jupyterhub/chartpress
 #
 charts:
-  - name: jupyterbook.pub-service
+  - name: jupyterbook-pub-service
     imagePrefix: quay.io/agoose77/
     baseVersion: "0.1.0-0.dev"
     repo:
-      git: agoose77/jupyterbook.pub-service
-      published: https://agoose77.github.io/jupyterbook.pub-service
+      git: agoose77/jupyterbook-pub-service
+      published: https://agoose77.github.io/jupyterbook-pub-service
 
     images:
       # binderhub-service, the container where the binderhub the Python
       # application is running.
-      jupyterbook.pub-service:
+      jupyterbook-pub-service:
         valuesPath: image
