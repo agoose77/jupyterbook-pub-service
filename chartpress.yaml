@@ -10,7 +10,7 @@
 #
 charts:
   - name: jupyterbook.pub-service
-    imagePrefix: quay.io/2i2c/
+    imagePrefix: quay.io/agoose77/
     baseVersion: "0.1.0-0.dev"
     repo:
       git: agoose77/jupyterbook.pub-service
