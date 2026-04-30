@@ -16,7 +16,7 @@ ENV PATH=/root/.local/bin:${PATH}
 # ephemeral docker cache (--mount=type=cache,target=${PIP_CACHE_DIR}). We use
 # the same technique for the directory /tmp/wheels.
 #
-ARG JUPYTER_BOOK_REV=6d1a9c1d210877127d76bcea3997bbd80b6832e2
+ARG JUPYTER_BOOK_REV=a8d739a9d2bf192e861e92f982996e909c458bd8
 RUN --mount=type=cache,target=/tmp/transient \
     cd $(mktemp -d) && \
     git clone --depth=1 https://github.com/yuvipanda/jupyterbook.pub . && \
