@@ -39,6 +39,7 @@ securityContext: {}
 
 auth:
   oauth_client_id: service-jupyterbook-pub
+  enabled: true
   hub_api_token:
   hub_api_url:
 
