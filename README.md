@@ -1,6 +1,6 @@
 # jupyterbook-pub-service
+![Static Badge](https://img.shields.io/badge/https%3A%2F%2Fagoose77.github.io%2Fjupyterbook--pub--service-blue?style=flat-square&label=Helm%20releases&link=https%3A%2F%2Fagoose77.github.io%2Fjupyterbook-pub-service%2F)
 
-[![Latest chart development release](https://img.shields.io/badge/Helm_releases-https://agoose77.github.io/jupyterbook-pub-service/blue?link=https://agoose77.github.io/jupyterbook-pub-service/&color=blue)](https://agoose77.github.io/jupyterbook-pub-service/)
 
 The jupyterbook-pub-service is a Helm chart and guide to run JupyterBook.pub in a Kubernetes cluster.
 
