@@ -61,7 +61,7 @@ spec:
             - "/etc/jupyterbook.pub/mounted-secret/jupyterbook_pub_config.py"
             {{- if .Values.extraBuilderConfig }}
             - "--builder-config"
-            - {{ print "/etc/jupyterbook.pub/mounted-builder-secret/" .Values.extraBuilderConfig.name | quote }}
+            - {{ print "/etc/jupyterbook.pub/mounted-builder-secret/." .Values.extraBuilderConfig.name | quote }}
             - "--repos"
             - "/srv/repos"
             - "--builds"
