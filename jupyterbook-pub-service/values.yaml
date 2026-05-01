@@ -43,11 +43,15 @@ auth:
   hub_api_token:
   hub_api_url:
 
+# Traitlets configuration for the core application
 config:
   JupyterBookPubApp:
     port: 9200
     base_url: /
+
 extraConfig: {}
+
+extraBuilderConfig:
 
 ingress:
   enabled: false

@@ -57,8 +57,12 @@ spec:
             - "python"
             - "-m"
             - "jupyterbook_pub.app"
-            - "--JupyterBookPubApp.config_file"
+            - "--config"
             - "/etc/jupyterbook.pub/mounted-secret/jupyterbook_pub_config.py"
+            {{- if .Values.extraBuilderConfig }}
+            - "--builder-config"
+            - {{ print "/etc/jupyterbook.pub/mounted-builder-secret/" .Values.extraBuilderConfig.name | quote }}
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.config.JupyterBookPubApp.port }}
@@ -70,6 +74,9 @@ spec:
             - name: secret
               mountPath: /etc/jupyterbook.pub/mounted-secret/
               readOnly: true
+            - name: builder-secret
+              mountPath: /etc/jupyterbook.pub/mounted-builder-secret/
+              readOnly: true
             {{- with .Values.volumeMounts }}
             {{- tpl (. | toYaml ) $ | nindent 12 }}
             {{- end }}
@@ -77,6 +84,9 @@ spec:
         - name: secret
           secret:
             secretName: {{ include "jupyterbook-pub-service.app.fullname" . }}
+        - name: builder-secret
+          secret:
+            secretName: {{ include "jupyterbook-pub-service.app.fullname" . }}-builder
         {{- with .Values.volumes }}
         {{- tpl (. | toYaml ) $ | nindent 8 }}
         {{- end }}
