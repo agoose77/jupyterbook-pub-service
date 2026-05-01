@@ -21,3 +21,5 @@ charts:
       # application is running.
       jupyterbook-pub-service:
         valuesPath: image
+        buildArgs:
+          JUPYTER_BOOK_REV: d544d685d26349371103d645900d842e7b893483
