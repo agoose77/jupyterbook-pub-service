@@ -85,6 +85,8 @@ spec:
               mountPath: /srv/repos/
             - name: builds
               mountPath: /srv/builds/
+            - name: temp
+              mountPath: /tmp/
       volumes:
         - name: secret
           secret:
@@ -95,11 +97,12 @@ spec:
         - name: builds
           emptyDir:
             sizeLimit: 1024Mi
-            medium: Memory
+        - name: temp
+          emptyDir:
+            sizeLimit: 1024Mi
         - name: repos
           emptyDir:
             sizeLimit: 500Mi
-            medium: Memory
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
