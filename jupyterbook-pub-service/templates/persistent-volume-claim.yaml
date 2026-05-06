@@ -1,0 +1,20 @@
+{{- if .Values.volumeClaim.enabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "jupyterbook-pub-service.app.fullname" . }}
+  labels:
+    {{- include "jupyterbook-pub-service.labels" . | nindent 4 }}
+    app.kubernetes.io/component: storage
+spec:
+  {{- with .Values.volumeClaim.accessModes }}
+  accessModes:
+    {{- . | toYaml | nindent 4 }}
+  {{- end }}
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: {{ .Values.volumeClaim.size }}
+  {{/* Quoting is important as empty string is treated differently than null here */}}
+  storageClassName: {{ .Values.volumeClaim.storageClass | quote }}
+{{- end }}

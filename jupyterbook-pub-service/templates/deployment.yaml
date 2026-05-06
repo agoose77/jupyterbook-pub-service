@@ -25,12 +25,16 @@ spec:
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with include "jupyterbook-pub-service.app.serviceaccount.fullname" . }}
+      serviceAccountName: {{ . }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           {{- with .Values.securityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+
 #           startupProbe:
 #             periodSeconds: 1
 #             failureThreshold: 60
@@ -52,21 +56,13 @@ spec:
             {{- end }}
 
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}  
           args:
             - "python"
             - "-m"
             - "jupyterbook_pub.app"
             - "--config"
             - "/etc/jupyterbook.pub/mounted-secret/jupyterbook_pub_config.py"
-            {{- if .Values.extraBuilderConfig }}
-            - "--builder-config"
-            - {{ print "/etc/jupyterbook.pub/mounted-builder-secret/." .Values.extraBuilderConfig.name | quote }}
-            - "--repos"
-            - "/srv/repos"
-            - "--builds"
-            - "/srv/builds"
-            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.config.JupyterBookPubApp.port }}
@@ -78,28 +74,21 @@ spec:
             - name: secret
               mountPath: /etc/jupyterbook.pub/mounted-secret/
               readOnly: true
-            - name: builder-secret
-              mountPath: /etc/jupyterbook.pub/mounted-builder-secret/
-              readOnly: true
-            - name: repos
-              mountPath: /srv/repos/
-            - name: builds
-              mountPath: /srv/builds/
+            # Explicitly define the subpaths, for robustness
+            - name: storage
+              mountPath: "/srv"
+            {{- with .Values.extraVolumeMounts }}
+            {{- tpl (. | toYaml) $ | nindent 12 }}
+            {{- end }}
       volumes:
         - name: secret
           secret:
             secretName: {{ include "jupyterbook-pub-service.app.fullname" . }}
-        - name: builder-secret
-          secret:
-            secretName: {{ include "jupyterbook-pub-service.app.fullname" . }}-builder
-        - name: builds
-          emptyDir:
-            sizeLimit: 1024Mi
-            medium: Memory
-        - name: repos
-          emptyDir:
-            sizeLimit: 500Mi
-            medium: Memory
+        - name: storage
+          {{ include "jupyterbook-pub-service.storageVolume" . | nindent 10 }}
+        {{- with .Values.extraVolumes }}
+        {{- tpl (. | toYaml) $ | nindent 8 }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
