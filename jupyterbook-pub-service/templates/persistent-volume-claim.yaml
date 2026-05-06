@@ -16,5 +16,7 @@ spec:
     requests:
       storage: {{ .Values.volumeClaim.size }}
   {{/* Quoting is important as empty string is treated differently than null here */}}
+  {{- if .Values.volumeClaim.storageClass }}
   storageClassName: {{ .Values.volumeClaim.storageClass | quote }}
+  {{- end }}
 {{- end }}
