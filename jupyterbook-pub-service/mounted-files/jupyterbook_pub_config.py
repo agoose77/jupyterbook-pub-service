@@ -42,6 +42,12 @@ def get_chart_config(config_path=None, default=None):
 # load the config object for traitlets based configuration
 c = get_config()  # noqa
 
+
+with open("/etc/jupyterbook.pub/mounted-secret/builtin-chart-config.py") as f:
+    src = f.read()
+print("Running builtin chart config")
+exec(src)
+
 # load "config" (YAML values)
 for section, value in get_chart_config("config").items():
     if not value:
@@ -55,4 +61,3 @@ for key, snippet in sorted(get_chart_config("extraConfig").items()):
         continue
     print(f"Running extraConfig.{key}")
     exec(snippet)
-

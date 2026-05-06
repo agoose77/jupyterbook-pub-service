@@ -1,0 +1,16 @@
+{{- if .Values.rbac.create -}}
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "jupyterbook-pub-service.app.fullname" . }}
+  labels:
+    {{- include "jupyterbook-pub-service.labels" . | nindent 4 }}
+subjects:
+  - kind: ServiceAccount
+    namespace: {{ .Release.Namespace }}
+    name: {{ include "jupyterbook-pub-service.app.serviceaccount.fullname" . }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "jupyterbook-pub-service.app.fullname" . }}
+{{- end }}
