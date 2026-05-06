@@ -40,6 +40,9 @@ RUN mkdir -p /opt/templates && \
 ENV JUPYTERBOOK2BUILDER__JupyterBookSiteRenderer__templates_path=/opt/templates
 ENV PYTHONUNBUFFERED=1
 
+ARG UID=1000
+USER ${UID}
+
 ENTRYPOINT ["tini", "--"]
 CMD ["python3", "-m", "jupyterbook_pub.app"]
 
