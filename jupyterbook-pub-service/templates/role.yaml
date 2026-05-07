@@ -9,11 +9,5 @@ rules:
   - apiGroups: [""]
     resources: ["pods"]
     verbs: ["get", "create", "delete"]
-  - apiGroups: [""]
-    #
-    # at the HTTP level, the name of the resource for accessing Secret
-    # objects is "secrets"
-    resources: ["secrets"]
-    verbs: ["get"]
 {{- end }}
 
