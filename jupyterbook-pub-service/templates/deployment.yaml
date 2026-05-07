@@ -94,7 +94,6 @@ spec:
             - name: secret
               mountPath: /etc/jupyterbook.pub/mounted-secret/
               readOnly: true
-            # Explicitly define the subpaths, for robustness
             - name: storage
               mountPath: "/srv"
             {{- with .Values.extraVolumeMounts }}
