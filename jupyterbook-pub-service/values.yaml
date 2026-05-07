@@ -50,7 +50,6 @@ securityContext: &securityContext
     drop:
       - ALL
   allowPrivilegeEscalation: false
-  readOnlyRootFilesystem: true
 
 podSecurityContext: &podSecurityContext
   runAsUser: 1000
