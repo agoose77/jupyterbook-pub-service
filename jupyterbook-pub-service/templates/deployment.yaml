@@ -33,6 +33,19 @@ spec:
       {{- with include "jupyterbook-pub-service.app.serviceaccount.fullname" . }}
       serviceAccountName: {{ . }}
       {{- end }}
+      initContainers:
+        # Ensure we have write access to the storage
+        - name: "volume-mount-ownership-fix"
+          image: "busybox:1.36.1"
+          command:
+            - "sh"
+            - "-c"
+            - "id && chown 1000:1000 /srv"
+          securityContext:
+            runAsUser: 0
+          volumeMounts:
+            - name: storage
+              mountPath: "/srv"
       containers:
         - name: {{ .Chart.Name }}
           {{- with .Values.securityContext }}
