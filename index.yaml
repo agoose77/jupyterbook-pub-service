@@ -2,6 +2,15 @@ apiVersion: v1
 entries:
   jupyterbook-pub-service:
   - apiVersion: v2
+    created: "2026-05-07T17:21:59.65739185Z"
+    description: A Helm chart for running jupyterbook.pub
+    digest: 43ad6d6f6437851299517765743588aa266820b4f91e1c1943d1d1c8d8e74fbc
+    name: jupyterbook-pub-service
+    type: application
+    urls:
+    - https://agoose77.github.io/jupyterbook-pub-service/jupyterbook-pub-service-0.1.0-0.dev.git.46.hdf5bcab.tgz
+    version: 0.1.0-0.dev.git.46.hdf5bcab
+  - apiVersion: v2
     created: "2026-05-07T13:09:11.154824749Z"
     description: A Helm chart for running jupyterbook.pub
     digest: e79d86329cf5bc40b472622d45cd9dd9ea5602ea945cd69ca3ef3629f4857ad4
@@ -235,4 +244,4 @@ entries:
     urls:
     - https://agoose77.github.io/jupyterbook-pub-service/jupyterbook-pub-service-0.1.0-0.dev.git.11.h26a696c.tgz
     version: 0.1.0-0.dev.git.11.h26a696c
-generated: "2026-05-07T13:09:11.153543342Z"
+generated: "2026-05-07T17:21:59.656757119Z"
