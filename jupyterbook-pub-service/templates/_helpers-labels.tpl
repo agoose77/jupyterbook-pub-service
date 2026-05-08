@@ -17,7 +17,7 @@ app.kubernetes.io/component: app
 {{- /*
   Build labels
 */}}
-{{- define "jupyterbook-pub-service.appLabels" -}}
+{{- define "jupyterbook-pub-service.buildLabels" -}}
 {{ include "jupyterbook-pub-service.coreLabels" .  }}
 app.kubernetes.io/component: builder
 {{- end }}
