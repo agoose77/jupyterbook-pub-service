@@ -22,4 +22,4 @@ charts:
       jupyterbook-pub-service:
         valuesPath: image
         buildArgs:
-          JUPYTER_BOOK_REV: f18dd56626ef0d2f0938eca5768de7e807c40ce6
+          JUPYTER_BOOK_REV: 7fdb7ca931a54b9b627dd5643a3265ecb89302c1
