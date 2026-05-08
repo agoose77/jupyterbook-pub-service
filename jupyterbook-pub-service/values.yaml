@@ -18,6 +18,9 @@ image:
 nameOverride: ""
 fullnameOverride: ""
 
+networkPolicy:
+  enabled: true
+
 ingress:
   enabled: false
   annotations: {}
@@ -31,8 +34,6 @@ service:
   type: ClusterIP
   port: 80
 
-volumes: []
-volumeMounts: []
 nodeSelector: {}
 tolerations: []
 affinity: {}
