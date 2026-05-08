@@ -13,8 +13,7 @@ spec:
       maxUnavailable: 1
   selector:
     matchLabels:
-      {{- include "jupyterbook-pub-service.coreLabels" . | nindent 6 }}
-      app.kubernetes.io/component: app
+      {{- include "jupyterbook-pub-service.appLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}

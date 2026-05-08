@@ -15,5 +15,4 @@ spec:
       targetPort: http
       name: http
   selector:
-    {{- include "jupyterbook-pub-service.coreLabels" . | nindent 4 }}
-    app.kubernetes.io/component: app
+    {{- include "jupyterbook-pub-service.appLabels" . | nindent 4 }}
