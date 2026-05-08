@@ -23,7 +23,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "jupyterbook-pub-service.appLabels" . | nindent 6 }}
+        {{- include "jupyterbook-pub-service.appLabels" . | nindent 8 }}
     spec:
       {{- with .Values.podSecurityContext }}
       securityContext:
